@@ -1,8 +1,6 @@
 Apollog::Application.routes.draw do
-  resources :articles do
-    member do
-      get 'tag'
-    end
+  resources :articles, :path => '/' do
+      get 'tag', :on => :member
   end
 
   get "log_out" => "sessions#destroy", :as => "log_out"

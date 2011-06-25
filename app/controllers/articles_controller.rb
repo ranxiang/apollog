@@ -2,7 +2,7 @@ class ArticlesController < ApplicationController
   skip_before_filter :require_login, :only => [:index, :show]
 
   def tag
-    @articles = Article.tagged_with(params[:id])
+    @articles = Article.tagged_with(params[:id]).page params[:page]
 
 
     respond_to do |format|
@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
   # GET /articles
   # GET /articles.json
   def index
-    @articles = Article.all
+    @articles = Article.page params[:page]
 
     respond_to do |format|
       format.html # index.html.erb
