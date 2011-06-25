@@ -15,20 +15,17 @@
   <div id="header-menu">
     <ul>
       <li>
-        <%= link_to 'HOME',
-                    :root, 
-                    :title => "HOME" %>
+        <%= link_to 'HOME', :root, :title => "HOME" %>
       </li>
+      <% if current_user %>
       <li>
-        <%= link_to 'BAR',
-                    :root, 
-                    :title => "BAR" %>
+        <%= link_to 'Log out', log_out_path %>
       </li>
+      <% else %>
       <li>
-        <%= link_to 'HERE',
-                    :root, 
-                    :title => "HERE" %>
+        <%= link_to 'Log in', log_in_path %>
       </li>
+      <% end %>
     </ul>
   </div>
   <div id="content"><%= yield %></div>
@@ -37,7 +34,7 @@
     <br />
     Tag Cloud:
     <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-      <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+      <%= link_to tag.name, { :controller => :articles, :action => :tag, :id => tag.name }, :class => css_class %>
     <% end %>
   </div>
   <div id="footer"> [TODO] FOOTER COPYRIGHT HERE </div>

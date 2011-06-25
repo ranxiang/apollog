@@ -5,6 +5,10 @@ Apollog::Application.routes.draw do
     end
   end
 
+  get "log_out" => "sessions#destroy", :as => "log_out"
+  get "log_in" => "sessions#new", :as => "log_in"
+  resources :sessions
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

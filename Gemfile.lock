@@ -114,6 +114,7 @@ PLATFORMS
 
 DEPENDENCIES
   acts-as-taggable-on
+  bcrypt-ruby
   coffee-script
   jquery-rails
   mysql2

@@ -16,6 +16,8 @@ gem 'jquery-rails'
 
 gem 'acts-as-taggable-on'
 
+gem 'bcrypt-ruby', :require => 'bcrypt'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
