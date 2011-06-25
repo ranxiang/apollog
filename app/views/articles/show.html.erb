@@ -1,15 +1,22 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @article.title %>
-</p>
 
-<p>
-  <b>Content:</b>
-  <%= @article.content %>
-</p>
-
+<article class="article">
+  <header class="post-title">
+    <%= link_to @article.title, @article %>
+  </header>
+  <p class="article-content">
+    <%= @article.content %>
+  </p>
+  <footer class="article-meta">
+    Created At: <%= @article.created_at %>
+    <%= link_to 'Edit', edit_article_path(@article) %>
+    <%= link_to 'Destroy', 
+                @article, 
+                confirm: 'Are you sure?', 
+                method: :delete %>
+  </footer>
+</article>
 
 <%= link_to 'Edit', edit_article_path(@article) %> |
 <%= link_to 'Back', articles_path %>
