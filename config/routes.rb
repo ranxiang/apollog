@@ -8,7 +8,7 @@ Apollog::Application.routes.draw do
       :defaults => { :format => 'atom' }
   
   resources :articles, :path => '/' do
-      get 'tag', :on => :member
+      get 'tag', :on => :collection
   end
 
 
