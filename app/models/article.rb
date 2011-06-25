@@ -1,6 +1,6 @@
 class Article < ActiveRecord::Base
   acts_as_taggable
-  default_scope order('created_at DESC')
+  default_scope where(:status => :PUBLISH).order('created_at DESC')  
   validates_presence_of :title
   validates_uniqueness_of :title, :allow_nil => false, :allow_blank => false
   validates_uniqueness_of :name, :allow_nil => false, :allow_blank => false
