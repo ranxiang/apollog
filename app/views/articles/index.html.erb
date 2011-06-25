@@ -1,8 +1,8 @@
-<h1>Listing articles</h1>
+<!-- Listing articles -->
 
 <% @articles.each do |article| %>
   <article class="article">
-    <header class="post-title">
+    <header class="article-title">
       <%= link_to article.title, article %>
     </header>
     <p class="article-content">

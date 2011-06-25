@@ -7,10 +7,32 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="header"></div>
-  <div id="header-menu"></div>
+  <div id="header">
+    <%= link_to '[TODO] BLOG TITLE HERE', 
+                :root, 
+                :title => "[TODO] BLOG TITLE HERE" %>
+  </div>
+  <div id="header-menu">
+    <ul>
+      <li>
+        <%= link_to '[TODO] NAVIGATION',
+                    :root, 
+                    :title => "[TODO] NAVIGATION" %>
+      </li>
+      <li>
+        <%= link_to 'BAR',
+                    :root, 
+                    :title => "BAR" %>
+      </li>
+      <li>
+        <%= link_to 'HERE',
+                    :root, 
+                    :title => "HERE" %>
+      </li>
+    </ul>
+  </div>
   <div id="content"><%= yield %></div>
-  <div id="sidebar"></div>
-  <div id="footer"></div>
+  <div id="sidebar"> [TODO] SIDEBAR HERE </div>
+  <div id="footer"> [TODO] FOOTER COPYRIGHT HERE </div>
 </body>
 </html>
