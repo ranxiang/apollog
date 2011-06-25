@@ -1,5 +1,5 @@
 atom_feed :language => 'en-US' do |feed|
-  feed.title "Feed Title"
+  feed.title t :blog_title
   feed.updated @articles.first.created_at
 
   @articles.each do |item|
