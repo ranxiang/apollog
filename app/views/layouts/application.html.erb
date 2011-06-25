@@ -15,9 +15,9 @@
   <div id="header-menu">
     <ul>
       <li>
-        <%= link_to '[TODO] NAVIGATION',
+        <%= link_to 'HOME',
                     :root, 
-                    :title => "[TODO] NAVIGATION" %>
+                    :title => "HOME" %>
       </li>
       <li>
         <%= link_to 'BAR',
@@ -32,7 +32,14 @@
     </ul>
   </div>
   <div id="content"><%= yield %></div>
-  <div id="sidebar"> [TODO] SIDEBAR HERE </div>
+  <div id="sidebar">
+    [TBD] SIDEBAR 
+    <br />
+    Tag Cloud:
+    <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+      <%= link_to tag.name, { :action => :tag, :id => tag.name }, :class => css_class %>
+    <% end %>
+  </div>
   <div id="footer"> [TODO] FOOTER COPYRIGHT HERE </div>
 </body>
 </html>

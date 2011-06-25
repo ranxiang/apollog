@@ -10,6 +10,7 @@
   </p>
   <footer class="article-meta">
     Created At: <%= @article.created_at %>
+    Tags: <%= @article.tag_list %>
     <%= link_to 'Edit', edit_article_path(@article) %>
     <%= link_to 'Destroy', 
                 @article, 

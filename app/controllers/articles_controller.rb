@@ -1,4 +1,14 @@
 class ArticlesController < ApplicationController
+  def tag
+    @articles = Article.tagged_with(params[:id])
+
+
+    respond_to do |format|
+      format.html { render action: "index" }
+      format.json { render json: @articles }
+    end
+  end
+
   # GET /articles
   # GET /articles.json
   def index
