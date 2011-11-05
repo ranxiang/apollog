@@ -2,8 +2,11 @@
 *.swp
 db/*.sqlite3
 log/*.log
-tmp/
+log/*.pid
+tmp/**/*
+coverage/*
 .sass-cache/
 .DS_Store
 config/database.yml
 config/deploy.rb
+.sass-cache/
