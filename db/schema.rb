@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(:version => 20120125154719) do
     t.string   "author_url"
     t.string   "author_ip"
     t.text     "content"
-    t.string   "type"
+    t.string   "author_type"
     t.integer  "parent_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false

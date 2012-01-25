@@ -7,7 +7,7 @@ class CreateComments < ActiveRecord::Migration
       t.string :author_url
       t.string :author_ip
       t.text :content
-      t.string :type
+      t.string :author_type
       t.integer :parent_id
 
       t.timestamps

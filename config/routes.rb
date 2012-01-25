@@ -5,6 +5,7 @@ Apollog::Application.routes.draw do
   
   match '/' => 'articles#index'
   resources :articles do
+      resources :comments
       get 'tag', :on => :collection
   end
   match '/feed' => 'articles#index',

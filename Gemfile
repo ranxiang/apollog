@@ -32,6 +32,8 @@ gem 'capistrano'
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'
 
+gem "recaptcha", :require => "recaptcha/rails"
+
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false

@@ -1,14 +1,15 @@
 <p id="notice"><%= notice %></p>
 
 
-<article class="article">
+<div class="row">
+<article class="article span9 well">
   <h3 class="post-title">
     <%= link_to @article.title, @article %>
   </h3>
-  <p class="article-content">
+  <div class="article-content">
     <%= raw @article.content %>
-  </p>
-  <footer class="article-meta">
+  </div>
+  <div class="article-meta">
     Created At: <%= @article.created_at %>
     Tags: <%= @article.tag_list %>
   <% if current_user %>
@@ -18,15 +19,71 @@
       confirm: 'Are you sure?', 
       method: :delete %>
   <% end %>
-  </footer>
+  </div>
 </article>
+
+
+<div class="span9 well">
+  <h3>Leave a Reply</h3>
+  <%= form_for([@article, @article.comments.build]) do |f| %>
+    <%= recaptcha_tags %>
+    <% if @comment and @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@comment.errors.count, "error") %> prohibited this article from being saved:</h2>
+
+        <ul>
+          <% @comment.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="field clearfix">
+      <%= f.label :author_name, 'Name(*required):' %>
+      <div class="input">
+        <%= f.text_field :author_name %>
+      </div>
+    </div>
+    <div class="field clearfix">
+      <%= f.label :author_email, 'Email(*required):' %>
+      <div class="input">
+        <%= f.text_field :author_email %>
+      </div>
+    </div>
+    <div class="field clearfix">
+      <%= f.label :author_url, 'Website:' %>
+      <div class="input">
+        <%= f.text_field :author_url %>
+      </div>
+    </div>
+    <div class="field clearfix">
+      <%= f.label :content, 'Comment(*required):' %>
+      <div class="input">
+        <%= f.text_area :content, :rows => 3, :class => "xlarge" %>
+      </div>
+    </div>
+    <div class="actions">
+      <%= f.submit 'Post', :class => "btn primary" %>
+    </div>
+  <% end %>
+</div>
+
+</div>
+<br />
+
 
 <div class="row">
   <% @article.comments.each do |comment| %>
     <div class="comment span9 well">
-      <%= link_to comment.author_name, comment.author_url %>
+      <div class="comment-metadata">
+        <strong>
+          <%= link_to_unless comment.author_url.blank?, comment.author_name, comment.author_url %>
+        </strong>
+        said at 
+        <i><%= comment.created_at %></i>
+      </div>
       <div class="comment-content">
-        <%= comment.content.html_safe %>
+        <%= comment.content.html_safe if comment.content %>
       </div>
     </div>
   <% end %>
