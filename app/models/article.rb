@@ -1,4 +1,5 @@
 class Article < ActiveRecord::Base
+  has_many :comments
   acts_as_taggable
   default_scope where(:status => :PUBLISH).order('created_at DESC')  
   validates_presence_of :title

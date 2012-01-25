@@ -11,15 +11,23 @@
   <footer class="article-meta">
     Created At: <%= @article.created_at %>
     Tags: <%= @article.tag_list %>
+  <% if current_user %>
     <%= link_to 'Edit', edit_article_path(@article) %>
     <%= link_to 'Destroy', 
-                @article, 
-                confirm: 'Are you sure?', 
-                method: :delete %>
+      @article, 
+      confirm: 'Are you sure?', 
+      method: :delete %>
+  <% end %>
   </footer>
 </article>
 
-<% if current_user %>
-  <%= link_to 'Edit', edit_article_path(@article) %> |
-<% end %>
-<%= link_to 'Back', articles_path %>
+<div class="row">
+  <% @article.comments.each do |comment| %>
+    <div class="comment span9 well">
+      <%= link_to comment.author_name, comment.author_url %>
+      <div class="comment-content">
+        <%= comment.content.html_safe %>
+      </div>
+    </div>
+  <% end %>
+</div>
