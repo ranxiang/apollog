@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Apollog</title>
+  <%= stylesheet_link_tag    "http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css" %>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
 
@@ -11,31 +12,44 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="header">
-    <%= link_to (t :blog_title), 
-                :root, 
-                :title => (t :blog_title) %>
+  <div class="topbar">
+    <div class="fill">
+      <div class="container">
+        <%= link_to (t :blog_title), :root, :title => (t :blog_title), :class => "brand" %>
+        <ul class="nav">
+          <li><%= link_to 'Home', :root, :title => "Home" %></li>
+          <% if current_user %>
+            <li><%= link_to 'New Article', new_article_path %></li>
+            <li><%= link_to 'Log out', log_out_path %></li>
+          <% else %>
+            <li><%= link_to 'Log in', log_in_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
   </div>
-  <div id="header-menu">
-    <ul>
-      <li><%= link_to 'HOME', :root, :title => "HOME" %></li>
-      <% if current_user %>
-        <li><%= link_to 'New Article', new_article_path %></li>
-        <li><%= link_to 'Log out', log_out_path %></li>
-      <% else %>
-        <li><%= link_to 'Log in', log_in_path %></li>
-      <% end %>
-    </ul>
+  <div class="container">
+    <div class="content">
+      <div class="page-header">
+        <h1><%= t :blog_title%> <small>sub-title</small></h1>
+      </div>
+      <div class="row">
+        <div id="main-area" class="span10">
+          <%= yield %>
+        </div>
+        <div id="sidebar" class="span4">
+          [TBD] SIDEBAR 
+          <br />
+          Tag Cloud:
+          <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
+            <%= link_to tag.name, { :controller => :articles, :action => :tag, :id => tag.name }, :class => css_class %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <p><%= t :blog_title%> is Powered by apollog, Copyright 2007-2011</p>
+    </footer>
   </div>
-  <div id="content"><%= yield %></div>
-  <div id="sidebar">
-    [TBD] SIDEBAR 
-    <br />
-    Tag Cloud:
-    <% tag_cloud(@tags, %w(css1 css2 css3 css4)) do |tag, css_class| %>
-      <%= link_to tag.name, { :controller => :articles, :action => :tag, :id => tag.name }, :class => css_class %>
-    <% end %>
-  </div>
-  <div id="footer"><%= t :blog_title%> is Powered by apollog, Copyright 2007-2011 </div>
 </body>
 </html>

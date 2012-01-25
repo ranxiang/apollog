@@ -1,27 +1,28 @@
 <!-- Listing articles -->
-
-<% @articles.each do |article| %>
-  <article class="article">
-    <header class="article-title">
+<div class="row">
+  <% @articles.each do |article| %>
+    <article class="article span9 well">
+    <h3 class="article-title">
       <%= link_to article.title, article %>
-    </header>
-    <p class="article-content">
-      <%= raw article.content %>
-    </p>
-    <footer class="article-meta">
+    </h3>
+    <div class="article-content">
+      <%= article.content.html_safe %>
+    </div>
+    <div class="article-meta">
       Created At: <%= article.created_at %>
-      Tags: <%= article.tag_list %>
+    Tags: <%= article.tag_list %>
 
-      <% if current_user %>
-      <%= link_to 'Edit', edit_article_path(article) %>
-      <%= link_to 'Destroy', 
-                  article, 
-                  confirm: 'Are you sure?', 
-                  method: :delete %>
-      <% end %>
-    </footer>
-  </article>
+  <% if current_user %>
+    <%= link_to 'Edit', edit_article_path(article) %>
+    <%= link_to 'Destroy', 
+      article, 
+      confirm: 'Are you sure?', 
+      method: :delete %>
+  <% end %>
+</div>
+</article>
 <% end %>
+</div>
 
 <%= paginate @articles %>
 
