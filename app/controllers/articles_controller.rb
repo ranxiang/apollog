@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-  skip_before_filter :require_login, :only => [:index, :show]
+  skip_before_filter :require_login, :only => [:index, :show, :tag]
 
   def tag
     @articles = Article.tagged_with(params[:id]).page params[:page]
